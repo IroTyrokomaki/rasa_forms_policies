@@ -1,0 +1,142 @@
+version: "3.1"
+
+stories:
+
+- story: happy path - traffic conditions
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_traffic_conditions
+  - action: action_provide_traffic_conditions
+  - intent: thank_you
+  - action: utter_thank_you
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: location provided
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_weather
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - requested_slot: location
+    - active_loop: null
+    - action: action_provide_weather
+    - intent: thank_you
+    - action: utter_thank_you
+    - intent: goodbye
+    - action: utter_goodbye
+
+- story: date provided
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+      - requested_slot: date
+  - active_loop: null
+  - action: action_provide_weather
+
+- story: ask different location
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+      - requested_slot: location
+  - active_loop: null
+  - action: action_provide_weather
+  - intent: inform
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+      - requested_slot: location
+  - active_loop: null
+  - action: action_provide_weather
+
+- story: ask different date
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+      - requested_slot: date
+  - active_loop: null
+  - action: action_provide_weather
+  - intent: inform
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+      - requested_slot: date
+  - active_loop: null
+  - action: action_provide_weather
+  - intent: thank_you
+  - action: utter_thank_you
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: location and date provided
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_weather
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - requested_slot: location
+        - requested_slot: date
+    - active_loop: null
+    - action: action_provide_weather
+
+- story: neither location nor date provided
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_weather
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_provide_weather
+
+- story: sad path - ask gas station
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: find_gas_station
+  - action: action_provide_gas_station
+  - intent: deny
+  - action: utter_deny
+
+- story: handle fallback
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: fallback
+  - action: action_default_fallback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

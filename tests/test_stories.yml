@@ -1,0 +1,147 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+- story: happy path - traffic conditions
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      How's the traffic today?
+    intent: ask_traffic_conditions
+  - action: action_provide_traffic_conditions
+  - user: |
+      thanks
+    intent: thank_you
+  - action: utter_thank_you
+    user: |
+      bye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: ask weather - location provided
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      What's the weather in Athens?
+    intent: ask_weather
+    entities:
+      - location: "Athens"
+  - action: action_provide_weather
+  - user: |
+      thanks a lot
+    intent: thank_you
+  - action: utter_thank_you
+    user: |
+      see you later
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: ask weather - location and date provided
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Tell me the weather for today in Athens.
+    intent: ask_weather
+    entities:
+      - location: "Athens"
+      - date: "today"
+  - action: action_provide_weather
+  - user: |
+      thanks a lot
+    intent: thank_you
+  - action: utter_thank_you
+    user: |
+      see you later
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: ask weather - location not provided
+  steps:
+  - user: |
+      hi there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      What's the weather like today?
+    intent: ask_weather
+  - action: action_ask_location
+  - user: |
+      In Athens
+    intent: inform
+    entities:
+    - location: "Athens"
+  - action: action_provide_weather
+  - user: |
+      Thanks!
+    intent: thank_you
+  - action: utter_thank_you
+  - user: |
+      Goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: ask weather - date not provided
+  steps:
+  - user: |
+      Hi there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      What's the weather like in Athens?
+    intent: ask_weather
+  - action: action_ask_date
+  - user: |
+      tomorrow
+    intent: inform
+    entities:
+    - date: "tomorrow"
+  - action: action_provide_weather
+  - user: |
+      thanks
+    intent: thank_you
+  - action: utter_thank_you
+  - user: |
+      goodbye
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: sad path - find_gas_station
+  steps:
+  - user: |
+      good morning
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I need to refuel. Show me the closest gas station.
+    intent: find_gas_station
+  - action: action_provide_gas_station
+  - user: |
+      no
+    intent: deny
+  - action: utter_deny
+  - user: |
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: user says thanks
+  steps:
+    - user: |
+        thanks
+      intent: thank_you
+    - action: utter_thank_you
+
+- story: bot challenge
+  steps:
+  - user: |
+      are you a bot?
+    intent: bot_challenge
+  - action: utter_iamabot

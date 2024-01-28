@@ -1,0 +1,110 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - thank_you
+  - inform
+  - ask_traffic_conditions
+  - find_gas_station
+  - ask_weather
+  - bot_challenge
+  - fallback
+
+entities:
+  - location
+  - date
+
+slots:
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: location
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: date
+
+forms:
+  weather_form:
+    required_slots:
+      - location
+      - date
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+    - text: "Hi there! How can I help you?"
+    - text: "Hi! What can I do for you?"
+
+  utter_goodbye:
+    - text: "Goodbye! If you have any more questions, feel free to ask."
+    - text: "See you later! Let me know if you need assistance."
+
+  utter_affirm:
+    - text: "Yes, I understand. How can I assist you further?"
+    - text: "Great! What else can I assist you with?"
+
+  utter_deny:
+    - text: "I'm sorry to hear that. If there's anything else I can help you with, feel free to ask."
+    - text: "Apologies if I couldn't meet your expectations. If there's anything else I can help you with, let me know."
+
+  utter_thank_you:
+    - text: "Happy to help! If there's anything else I can help you with, don't hesitate to reach out."
+
+  action_ask_location:
+    - text: "For which location would you like the weather information?"
+    - text: "What's the location you're interested in for?"
+
+  action_ask_date:
+    - text: "When would you like the weather information for?"
+    - text: "Could you let me know the date you're interested in?"
+    - text: "When are you looking for the weather information?"
+
+  action_provide_traffic_conditions:
+    - text: "Traffic conditions are currently normal. No significant delays reported."
+    - text: "Good news! Traffic is flowing smoothly, and there are no major delays at the moment."
+
+  action_provide_weather:
+    - text: "The weather in {location} for {date} is {weather_condition} and the temperature is {temperature}°C."
+    - text: "For {date} in {location}, the weather will be {weather_condition} and the temperature is {temperature}°C."
+    - text: "The temperature in {location} on {date} is {temperature}°C, and the weather is {weather_condition}."
+
+  action_provide_gas_station:
+    - text: "The nearest gas station is located 2 miles from your current location. Do you have enough fuel to get there?"
+    - text: "In case you need fuel, the closest gas station is just 2 miles away. Do you need directions?"
+    - text: "There's a gas station nearby, around 2 miles from where you are. Would you like more details?"
+
+  action_default_fallback:
+    - text: "Apologies, I couldn't grasp that. Can you provide more details or ask about the weather or traffic conditions?"
+    - text: "Sorry, I didn't catch that. If you have questions about the weather or traffic, feel free to ask!"
+    - text: "My apologies, I didn't get that. For help, you can ask about the current weather or traffic conditions."
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+actions:
+- utter_greet
+- utter_goodbye
+- utter_deny
+- utter_affirm
+- utter_thank_you
+- action_ask_location
+- action_ask_date
+- action_provide_traffic_conditions
+- action_provide_gas_station
+- action_provide_weather
+- action_default_fallback
+- utter_iamabot
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+

@@ -1,0 +1,114 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: thank_you
+  examples: |
+    - thanks
+    - thank you
+    - thanks a lot
+    - thank you so much
+    - thanks!
+    - thank you very much
+    - thanks for your help
+
+- intent: ask_traffic_conditions
+  examples: |
+    - How's the traffic today?
+    - Any traffic jams right now?
+    - Tell me about the current traffic conditions.
+
+- intent: find_gas_station
+  examples: |
+    - Find gas stations nearby.
+    - Locate a gas station around here.
+    - I need to refuel. Show me the closest gas station.
+
+- intent: ask_weather
+  examples: |
+    - What's the weather like today in [location]?
+    - Tell me the current weather for [date].
+    - How's the weather for [date]?
+    - Give me the weather update for [location].
+    - What's the temperature in [location]?
+    - Describe the weather in [location] for [date].
+
+- intent: inform
+  examples: |
+    - [Athens](location)
+    - [Crete](location)
+    - [Paris](location)
+    - [Volos](location)
+    - [Spain](location)
+    - [Rethymno](location)
+    - [Glyfada](location)
+    - [Marousi](location)
+    - [Thessaloniki](location)
+    - [today](date)
+    - [tomorrow](date)
+    - [this afternoon](date)
+    - [next Saturday](date)
+    - [in two days](date)
+    - [on Monday](date)
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: fallback
+  examples: |
+    - Help! 
+    - I'm lost
+    - Huh?
+    - What?
+    - never mind
