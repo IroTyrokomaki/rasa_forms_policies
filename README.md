@@ -88,7 +88,7 @@ rules:
     - action: action_provide_weather
  
 ### Non-Functioning Example:
-Consider a scenario where the user has already mentioned the location in a prior interaction, and the MemoizationPolicy fails to recognize this context. Despite the user providing the location information earlier, the MemoizationPolicy fails to appropriately utilize the user's historical input and unnecessarily repeats a question about the location,
+Consider a scenario where the user has already mentioned the location in a prior interaction, and the MemoizationPolicy fails to recognize this context. Despite the user providing the location earlier, the MemoizationPolicy fails to appropriately utilize the user's historical input and unnecessarily repeats a question about the location.
 
 a. User Input (earlier)
 - User: What's the weather like in Rethymno?
@@ -146,7 +146,7 @@ rules:
 In this non-functioning example, the TEDPolicy may not effectively generalize from variations in the order of slot values provided by the user, leading to a misprediction of the correct action within the weather form.
 
 User Input 
-- User: Tell me the forecast in Athens for tomorrow.
+- User: Tell me the forecast in Athens for today.
 
 rules:
 - rule: Submit Weather form with location
